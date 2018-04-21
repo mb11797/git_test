@@ -1,1 +1,1 @@
-This is my second file for git tutorial.Changes to second file.
+Changes to the second file
