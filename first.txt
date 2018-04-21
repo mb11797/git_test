@@ -1,4 +1,4 @@
-I am sam and i like jam.
-This is my first commit.
+I like jam and people used to call m sam.
+Modified first file.
 
 
