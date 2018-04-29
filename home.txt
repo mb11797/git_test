@@ -1,3 +1,6 @@
 Manas has a pure heart...He doesnt want bad of anyone.
 Making new changes
-Bought a new drone
+Bought a new drone...
+This was not to be changed.Undo the changes back from staging area.
+
+
