@@ -1,0 +1,442 @@
+Download : git-scm.com/downloads  --- choose ur platform window or mac or linux
+Install : run executable file --- Windows: 
+1.Default
+2.use git from git bash only
+3.Checkout windows style,commit Unix-style line endings
+4.u will get 3 ways to work after installing :
+a.git bash
+b.git CMD
+c.git GUI
+
+
+# git is pretty much a program that lets u keep track of changes in files.
+# It is a version control system
+# It is one of the best program for managing source code.
+
+# Git doesn’t store data as a series of changesets or deltas, but instead as a series of snapshots.
+
+1.git --version 													#git version	
+
+#before we add or change files or make repo we need 
+to fill out our username and our email 													
+2.git config --global user.name "mb11797"							#git username
+3.git config --global user.email "mb.manasbhardwaj@gmail.com"		#git email
+4.git config -list													#to check the list of settings
+5.clear
+6.git config user.email												#only for some specified things
+
+7.git help
+8.git help commit
+
+
+9.pwd																#present working directory-where git is looking
+10.cd ~			#(~) means home
+11.cd ..
+12.ls
+
+# repositories are projects - one and the same thing
+
+13.git init					#To turn a folder into a git project
+							#or say initialising an empty git repository
+
+##### How exactly does git keeps track of all these changes???
+14.ls -la					#dont touch the files from this
+
+15.git add .				#let git know that we made some changes to the project
+16.git commit -m "My first commit"					#in order to git keep track of these changes, commit these changes
+# whenever we make a commit to git, what you're telling it is to save this point in time
+# its like taking a snapshot of that point in time and any time later u mess up, u can come back 
+# to that point in time (kind of like redoing it) 
+# -m means message
+
+##### How to view all of your commits history???
+17.git log					#commits history
+
+# U can also view commits from a certain person if u r working in a team.
+18.git log --author="mb11797"
+
+##### Making changes to ur project
+19.git status				# status basically tells that there r no files that u r 
+							# working on, that git isn't keeping track of
+							
+# untracked files - means that we didnt commit them and if we dont commit them 
+# git isn't keeping track of them
+
+
+##### Git workflow :  working copy >  staging area > repository
+# whenever we create a file its on our working copy(its on a local computer)
+# then, whenever we use git add it goes to the staging area,
+# now the staging area is pretty much saying that okay these are the 
+# files that r ready to get committed and whenever u commit it, it 
+# goes to the repositry, repository is ur end goal bcz 
+# then git keeps track of those files
+
+20.git add second.txt		#add second.txt file to staging area
+21.git commit -m "second commit to the repo"
+22.git log
+23.git status
+24.git add third.txt
+25.git status
+26.git commit -m "Third file committed to the repo"
+27.git status
+# working directory clean means all files in the working area are 
+up to date with those in the staging area or git repository.
+
+##### How to compare the working directory against the staging area???
+28.git diff			#viewing the changes that u made in each file
+				#diff command shows the : 
+				#differences between ur working copy and ur staging area
+				#its not comparing it against ur repository 
+
+##### How to compare the staging area against the repository???
+29.git diff --staged		#compare staging area and repository
+
+##### How to delete files???
+30.git rm filename.extension		#removes working copy as well as from repository
+31.git rm third.txt			#removing the file from git working directory
+32.git status
+33.git diff
+
+##### To commit these changes of deleting a file to repository also
+34.git commit -m "This is the point in time where we deleted third.txt"
+
+##### How to move and rename files???
+# 1st rename the file -> check git status -> git add newname.txt -> git rm oldname.txt -> git status -> git commit -m "msg"
+35.git status
+36.git add home.txt
+37.git rm first.txt
+38.git status
+39.git commit -m "renamed first.txt to home.txt"
+# This way of renaming files is kind of confusing!!!
+
+##### Easy way : hint-in git moving a file is pretty much like renaming it
+40.git mv second.txt drone.txt				# mv -> move
+41.git status
+42.git mv drone.txt Innovation/auto_drone		#moving into other folder simultaneously by renaming filename
+43.git status
+44.git commit -m "renamed drone.txt file and put in Innovation"
+
+##### How to commit directly from ur working copy to ur repository???
+45.git commit -am "message"		#first adds to the staging area and then commits directly and simultaneously to the repository
+# this command skips the staging area
+# no need to use staging area again than!!!Not exactly
+# this is only useful in certain situations
+# 1.it grabs everything in ur working copy.
+# 2.only helpful when u r editing or modifying files, DO NOT USE when deleting or moving or renaming files.
+
+##### How to undo changes to ur working directory???
+# suppose u changed a file in the wrong way in which u were not supposed to do it but u did not pushed it to repository,so u 
+# want to make everything as earlier!!!
+46.git status
+47.git checkout -- filename.extension			#(--) -> something related to branch...this command will load back the file from repository
+48.git checkout -- home.txt
+
+##### How to unstage files or uncommit files ???  or,
+##### How to bring your file back down from staging area to your working copy ???
+49.git add .
+50.git status
+51.git reset HEAD home.txt						# home.txt is the file that was previously added to the staging area
+52.git status
+
+##### Getting old versions of your project from the repository...
+# When u commit some wrong changes or u want to revert back or roll back to some previous state of ur project!!!
+# REVERT BACK OR ROLL BACK TO SOME PREVIOS COMMIT...
+# first > second > third - u want to revert back to second commit bcz something is wrong with third commit!!!
+# u actually cannot delete the third commit as it is a point in time that github has stored,so u can make a copy of second and paste it after third...
+# first > second > third > second
+53.git log
+# identify the commit where u want to roll or revert back and copy or type the whole or partial commit id 
+54.git checkout commit_id -- filename.extension
+55.git checkout 5dv97c7bb4d479f565 -- Innovation/auto_drone.txt
+# or id can be even more partial 
+56.git checkout 5dv97c7bb -- Innovation/auto_drone.txt
+57.git status
+# it reverted back the changes to working copy from the repository to some specific previous commit
+# now we have to commit this working directory to repo
+58.git commit -am "undoing some specific previous commit"
+59.git status
+
+
+
+##### What is Git ???
+# Git is a free and open source distributed version control system designed to handle everything 
+# from small to very large projects with speed and efficiency.
+# Git is fast. With Git, nearly all operations are performed locally, giving it a huge speed advantage on centralized systems 
+# that constantly have to communicate with a server somewhere.
+# Git was built to work on the Linux kernel, meaning that it has had to effectively handle large repositories from day one. Git 
+# is written in C, reducing the overhead of runtimes associated with higher-level languages. Speed and performance has been a 
+# primary design goal of the Git from the start.
+
+# "Git is a free and open source distributed version control system designed to handle everything from small to very large 
+# projects with speed and efficiency"
+# Git is a distributed peer-peer version control system. Each node in the network is a peer, storing entire repositories which 
+# can also act as a multi-node distributed back-ups. There is no specific concept of a central server although nodes can be 
+# head-less or 'bare', taking on a role similar to the central server in centralised version control systems.
+
+
+
+##### What is Github ???
+# Github is a development platform inspired by the way u work. From open source to business, u can host and review 
+# code, and manage projects, and build software alongside millions of other developers.
+# Github (originally known as Logical Awesome LLC) is a web-based hosting service for version control using git.It is mainly used for computer 
+# code. It offers all of the distributed version control and source code management(SCM) functionality of Git as well as adding its own features.
+# It provides access control and several collabortion features such as bug tracking, feature requests, task management, and wikis for every project.
+
+# "GitHub is a web-based Git repository hosting service, which offers all of the distributed revision control and source code 
+# management (SCM) functionality of Git as well as adding its own features."
+
+# Github provides access control and several collaboration features such as wikis, task management, and bug tracking and 
+# feature requests for every project.
+
+# You do not need GitHub to use Git.
+
+# GitHub (and any other local, remote or hosted system) can all be peers in the same distributed versioned repositories within a 
+# single project.
+# Github allows you to:
+# Share your repositories with others.
+# Access other user's repositories.
+# Store remote copies of your repositories (github servers) as backup of your local copies.
+
+
+
+##### What is the difference between git and github ???
+# GitHub is a website where you can upload a copy of your Git repository. It is a Git repository hosting service, which offers 
+# all of the distributed revision control and source code management (SCM) functionality of Git as well as adding its own 
+# features.
+# Git is a revision control system, a tool to manage your source code history.
+# GitHub is a hosting service for Git repositories.
+# So they are not the same thing: Git is the tool, GitHub is the service for projects that use Git.
+
+# Git — The version control tool that GitHub is built on top of.
+
+# GitHub — Our company and the name of our software. We build software and websites to help you interact with Git repositories 
+# in a nice way.
+
+# GitHub.com — The website you log into to view repositories online.
+
+# GitHub Desktop — An application that you can install on your computer to help you synchronize local code with GitHub.com.
+
+
+##### Pushing to a git repository
+##### git remote
+# remote - A remote URL is Gt's fancy way of saying "the place where ur code is stored".That URL could be ur repository on Github, or another user's 
+# fork, or even on a completely different server.
+# U can only push to two types of URL addresses : 
+# An HTTPS URL like https://github.com/user/repo.git
+# An SSH URL like git@github.com:user/repo.git
+#
+# Git associates a remote URL with a name, and ur default remote is usually called origin.
+# Syntax : git remote add remote_name <REMOTE_URL>
+# git remote add Manas https://github.com/mb11797/git_test.git
+# This associates the name Manas with the REMOTE_URL
+# VVVVVVVVV....IMP : U can use the command :
+#                       git remote set-url 
+#                     to change a remote's URL
+60.git remote add Manas https://github.com/mb11797/git_test.git
+61.git remote
+62.git remote -v
+63.git push -u Manas master							# -u to ask for username and password
+
+
+##### Use of gitignore file
+# If you create a file in your repository named .gitignore, Git uses it to determine which files and directories to ignore, 
+# before you make a commit. A .gitignore file should be committed into your repository, in order to share the ignore rules 
+# with any other users that clone the repository.
+
+
+# U can also use Github Desktop to maintain ur git repository...Also fro github desktop u can syncronize the changes to github 
+# (public) online 
+
+
+
+##### Branches in git ???
+##### What a Branch Is
+# To really understand the way Git does branching, we need to take a step back and examine how Git stores its data. Git doesn’t 
+# store data as a series of changesets or deltas, but instead as a series of snapshots.
+# A branch in Git is simply a lightweight movable pointer to one of these commits. The default branch name in Git is master. As 
+# you initially make commits, you're given a master branch that points to the last commit you made. Every time you commit, it 
+# moves forward automatically.
+# A branch is essentialy a copy of your main repository...
+
+
+##### Why would u ever want to make a branch ???
+# In order to understand this, its important to understand the overall basics of a github workflow...
+# When you commit in Git, Git stores a commit object that contains a pointer to the snapshot of the content you staged, the 
+# author and message metadata, and zero or more pointers to the commit or commits that were the direct parents of this commit: 
+# zero parents for the first commit, one parent for a normal commit, and multiple parents for a commit that results from a merge 
+# of two or more branches.
+
+
+
+##### Why u create a new branch???
+# MB -> Bcz when u want to contribute to a project u need to first copy the complete repo content into ur branch and make ur respective 
+# changes and then ask the master branch to verify and update the changes to master branch, i.e., in short u need to submit a 
+# new pull request and then the master will be able to see the pull request in its branch on the project's repo and then he will 
+# be incharge to cross validate the changes and merge the pull request (or even close the pull request denying the changes) into 
+# the main branch of the repository so that the whole world can see the changes...
+
+# NOTE - U can also delete a branch but its changes will still remain in the master branch... 
+
+64.git fetch origin
+
+
+
+##### How to create a git branch ???
+#1.Create a new branch. Replace <BRANCH-NAME> with descriptive name:
+#
+# 			git branch <BRANCH-NAME>
+#2.Check your repository’s status:
+#
+# 			git status
+# Notice that although you created a new branch, you are still checked out to master, as indicated by the in-line response from 
+# Git.
+#
+#3.Check out to your new branch:
+#
+# 			git checkout <BRANCH-NAME>
+#4.Verify that you are now checked out to your new branch:
+#
+# 			git status
+
+
+
+##### How to update/create/push my new branch on git to github also (i.e. to create an upstream branch on github also) ???
+65.git branch
+66.git branch Manas
+67.git status
+68.git checkout Manas
+69.git push --set-upstream remote_name new_branch_name
+70.git push --set-upstream Manas Manas
+# Now u can check ur new branch on github also
+# BRANCHES ESSENTIALLY ALLOWS U TO MAINTAIN 2 SEPARATE COPIES OF UR CODE AND THOSE MIGHT HAVE ALTERNATE VERSIONS OF UR CODE, 
+# UR ALGORITHM, OR WHATEVER U R TRYING TO DO...
+
+
+
+##### U can also do both the works together-CREATE NEW BRANCH AND CHECKOUT THE NEW BRANCH ???
+71.git checkout -b dummy
+72.git branch
+73.git status
+
+
+
+##### Create a new branch with git and manage branches ???
+#
+# In your github fork, you need to keep your master branch clean, by clean I mean without any changes, like that you can create at any time a branch from your master. Each time that you want to commit a bug or a feature, you need to create a branch for it, which will be a copy of your master branch.
+#
+# When you do a pull request on a branch, you can continue to work on another branch and make another pull request on this other branch.
+#
+# Before creating a new branch, pull the changes from upstream. Your master needs to be up to date.
+#
+# Create the branch on your local machine and switch in this branch :
+#
+# $ git checkout -b [name_of_your_new_branch]
+# Change working branch :
+#
+# $ git checkout [name_of_your_new_branch]
+# Push the branch on github :
+#
+# $ git push origin [name_of_your_new_branch]
+# When you want to commit something in your branch, be sure to be in your branch. Add -u parameter to set upstream.
+#
+# You can see all branches created by using :
+#
+# $ git branch
+# Which will show :
+#
+# * approval_messages
+#   master
+#   master_clean
+#   Add a new remote for your branch :
+#
+# $ git remote add [name_of_your_remote] 
+# Push changes from your commit into your branch :
+#
+# $ git push [name_of_your_new_remote] [name_of_your_branch]
+# Update your branch when the original branch from official repository has been updated :
+#
+# $ git fetch [name_of_your_remote]
+# Then you need to apply to merge changes, if your branch is derivated from develop you need to do :
+#
+# $ git merge [name_of_your_remote]/develop
+# Delete a branch on your local filesystem :
+#
+# $ git branch -d [name_of_your_new_branch]
+# To force the deletion of local branch on your filesystem :
+#
+# $ git branch -D [name_of_your_new_branch]
+# Delete the branch on github :
+#
+# $ git push origin :[name_of_your_new_branch]
+# The only difference is the : to say delete, you can do it too by using github interface to remove branch : https://help.github.com/articles/deleting-unused-branches.
+#
+# If you want to change default branch, it's so easy with github, in your fork go into Admin and in the drop-down list default branch choose what you want.
+#
+
+
+##### How to delete a git branch ???
+74.git branch
+75.git branch -d dummy					#-d means delete 
+76.git branch
+
+
+
+##### To delete remote branch use ???
+##### To delete branch from github also ???
+# first checkout to master or some other branch, then type the following command :
+77.git checkout master
+78.git push remote_name --delete branch_name
+79.git push Manas --delete dummy
+# now go and check ur github
+
+
+
+##### How to merge a branch xyz into current branch ???
+80.git checkout Manas
+80.git merge xyz
+# This will merge branch xyz into branch Manas
+
+
+
+##### Raw - To download or copy the source code without unnecessary formatting and html/css...
+
+
+##### Blame - It shows that which line of code is added by whom...
+
+
+##### History - It shows all the commits and changes for just one file on which u presently are...Donts get history confused with commits bcz commits shows 
+# history of entire project (all files) ...
+
+
+##### Watch/Unwatch - Basically it is like following a repository...Any changes made to it will be notified to u...
+
+
+##### Star/Unstar - Saving or Bookmarking...Without getting the notifications as in watch...
+
+
+##### Fork - Make a new branch or copy of the curet project in your own profile so that u can make changes or work on ur own.If anytime u want to ask for 
+# updating changes, u can make a new pull request...
+
+
+##### Issues - It is just like a to-do-list...Like dividing or assigning different works to different contributors...Like making a 
+# home page or making a login page, or writing algorithm for something, etc. 
+
+
+##### Label - It tells u what kind of issue it is...
+# e.g., bug,enhancement,duplicate,help wanted,etc
+# We can also create a custom label also.
+
+
+
+##### Assignee - Person to whom the issue is assigned.It can be more than one for a single issue...
+
+
+##### Open / Closed Issues - Issue status (not finished/ finished)
+
+
+##### Wikis - Contains more info about ur repository...U dont have to have it...
+
+
+
+##### Organizations and Teams on Github - If u r working on a big and professional project...U can buy private repositories also for them...
+# It is basically like a company and its employees...

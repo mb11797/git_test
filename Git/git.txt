@@ -1,0 +1,152 @@
+# Git doesn’t store data as a series of changesets or deltas, but instead as a series of snapshots.
+
+pwd
+cd
+
+
+1.git init : 
+
+git init - to initialise git repository in a particular folder in ur desktop
+
+Some Issue : 
+As it has already been mentioned in che's answer about adding the remote part, which I believe you are still missing.
+
+Regarding your edit for adding remote on your local USB drive. First of all you must have a 'bare repository' if you want your repository to be a shared repository i.e. to be able to push/pull/fetch/merge etc..
+
+To create a bare/shared repository, go to your desired location. In your case:
+
+$ cd /Volumes/500gb/   
+$ git init --bare myproject.git
+See here for more info on creating bare repository
+
+Once you have a bare repository set up in your desired location you can now add it to your working copy as a remote.
+
+$ git remote add origin /Volumes/500gb/myproject.git
+And now you can push your changes to your repository
+
+$ git push origin master
+
+
+$ git fetch origin
+
+2.ADD : 
+git status
+git pull origin master
+git checkout branch_name
+git add *
+git commit -m "Remarks"
+git push origin branch_name 
+
+
+
+3.MERGE : 
+git status -  to check on which directory u r presently
+git checkout test - to switch ur dir to branch test
+git pull origin master - to pul the work of master at present 
+git checkout master - to switch to master
+git merge test  - to merge ur work to master in its current state
+
+
+
+4.git remote : 
+To check for the git remote in the repository : go to the repo in ur laptop 
+						and type git remote
+Removing a remote. Use the git remote rm command to remove a remote URL from 
+your repository. The git remote rm command takes one argument: A remote name,
+for example, destination.
+
+git remote 
+git remote -v
+
+git remote add origin https://github.com/user/repo.git
+# Set a new remote
+git remote -v
+# Verify new remote
+origin  https://github.com/user/repo.git (fetch)
+origin  https://github.com/user/repo.git (push)
+
+
+
+5.Rolling back : 
+U can also roll back to a previous commit of master or any branch if u r a collaborator from any branch
+https://stackoverflow.com/questions/4114095/how-to-revert-git-repository-to-a-previous-commit
+
+Important Errors : 
+1.
+$ git push origin master
+To https://github.com/mb11797/OpS.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/mb11797/OpS.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+2.
+In my case, error was just fatal: refusing to merge unrelated histories on every 
+especially first pull request after remotely adding a git repo
+Using --allow-unrelated-histories flag worked with pull request in this way:
+
+git pull origin branchname --allow-unrelated-histories
+
+3.What I did: I have created a remote repository on Github and I am trying to clone the remote repository on my local machine. While cloning I am providing the clone URL & target folder.
+
+But every time I try to clone, I am getting this error:
+
+Error: "fatal: unable to access 'https://github.com/hyperion057/spring-repo.git/': Could not resolve host: github.com"
+
+What do I need to do to connect to GitHub ?
+
+Soln - I got a similar error, and it's caused by incorrect proxy setting. This command saved me:
+
+git config --global --unset http.proxy
+https version:
+
+git config --global --unset https.proxy
+
+
+
+Important Facts :
+1.Different folders or projects or repo in ur laptop can have different git remotes, which are the 
+remotes to different projects or repo on ur github, so that u can make changes to a particular 
+project using its remote.
+
+
+2.About remote repositories :
+GitHub's collaborative approach to development depends on publishing commits from your local repository for other people to view, fetch, and update.
+
+A remote URL is Git's fancy way of saying "the place where your code is stored." That URL could be your repository on GitHub, or another user's fork, or even on a completely different server.
+
+You can only push to two types of URL addresses:
+
+An HTTPS URL like https://github.com/user/repo.git
+An SSH URL, like git@github.com:user/repo.git
+Git associates a remote URL with a name, and your default remote is usually called origin.
+
+3.Creating remotes
+You can use the git remote add command to match a remote URL with a name. For example, 
+you'd type the following in the command line:
+
+git remote add origin  <REMOTE_URL> 
+This associates the name origin with the REMOTE_URL.
+
+You can use the command git remote set-url to change a 
+remote's URL.
+
+4.As you probably know, git is a distributed version control 
+system. Most operations are done locally. To communicate with 
+the outside world, git uses what are called remotes. These are 
+repositories other than the one on your local disk which you can 
+push your changes into (so that other people can see them) or pull 
+from (so that you can get others changes). The command git 
+remote add origin git@github.com:peter/first_app.git creates a new 
+remote called origin located at git@github.com:peter/first_app.git. 
+Once you do this, in your push commands, you can push to origin 
+instead of typing out the whole URL.
+
+
+
+
+
+$ git fetch origin
